@@ -1,7 +1,7 @@
 'use strict'
 
 function onInit() {
-  // renderWikis(getWikis())
+  renderVideoList()
   // renderYouTubes(getYouTubes())
 }
 
