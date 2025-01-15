@@ -2,6 +2,7 @@
 
 function onInit() {
   renderVideoList()
+  renderWikis()
   // renderYouTubes(getYouTubes())
 }
 
@@ -14,7 +15,25 @@ function onSearchInput(value) {
     .catch((err) => console.log('error: ', err))
 }
 
-function renderWikis() {}
+function renderWikis() {
+  getTopThreeWikiSearch('the beatles')
+    .then((res) => {
+      const elWikiInfo = document.querySelector('.wiki-info')
+      let strHTML = ''
+
+      strHTML = res
+        .map((article) => {
+          return `<h2><a href="https://en.wikipedia.org/wiki/${article.titleURL}">
+        ${article.title}</a></h2>
+           <p>${article.snippet}</p>
+          `
+        })
+        .join('')
+
+      elWikiInfo.innerHTML = strHTML
+    })
+    .catch((err) => console.log('err: ', err))
+}
 
 function renderVideoList() {
   getTopFiveSearch('the beatles')

@@ -29,15 +29,21 @@ function getTopFiveSearch(value) {
     })
 }
 
-function getTopThreeWikiSearch(value) {}
+function getTopThreeWikiSearch(value) {
+  return axios
+    .get(
+      `https://en.wikipedia.org/w/api.php?&origin=*&action=query&list=search&srsearch=${value}&format=json`
+    )
+    .then((res) => {
+      const data = res.data.query.search.splice(0, 3)
 
-////
+      const cleanData = data.map((item) => {
+        const { title, snippet } = item
+        return { title, snippet, titleURL: title.split(' ').join('_') }
+      })
+      return Promise.resolve(cleanData)
 
-/*
-arr = [
- {id, thumbnail}
-]
-
-
-
-*/
+      // let title = data[0].title.split(' ').join('_')
+      // console.log('title', title)
+    })
+}
