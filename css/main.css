@@ -34,4 +34,5 @@
 
 .video-clip {
   background-color: darkgray;
+  display: flex;
 }

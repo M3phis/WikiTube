@@ -5,25 +5,12 @@
     <link rel="stylesheet" href="css/main.css" />
     <title>Document</title>
   </head>
-  <body>
+  <body onload="onInit()">
     <main class="main-container">
       <section class="left-container">
         <h1 class="wikitube-header">WikiTube</h1>
         <div class="vidoes-container">
-          <section class="layout">
-            <div onclick="onPlayVideo()" class="video-clip">1</div>
-            <div class="video-clip">2</div>
-            <div class="video-clip">3</div>
-            <div class="video-clip">4</div>
-            <div class="video-clip">5</div>
-            <div class="video-clip">6</div>
-            <div class="video-clip">7</div>
-            <div class="video-clip">8</div>
-            <div class="video-clip">9</div>
-            <div class="video-clip">10</div>
-            <div class="video-clip">11</div>
-            <div class="video-clip">12</div>
-          </section>
+          <section class="layout"></section>
         </div>
       </section>
 
@@ -53,6 +40,8 @@
     </main>
     <script src="lib/axios.js"></script>
     <script src="lib/swal.js"></script>
+    <script src="js/services/wikitube.service.js"></script>
+    <script src="js/controllers/wikitube.contoller.js"></script>
     <script src="js/main.js"></script>
   </body>
 </html>
