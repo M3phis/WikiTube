@@ -34,17 +34,18 @@
   }
 
   .search-band {
-    place-self: center stretch;
+    place-self: center start;
   }
 
   .vidoes-container {
     width: 50%;
   }
 
-  /* .video-clip {
+  .video-clip {
     background-color: darkgray;
     display: flex;
     align-items: center;
     gap: 10px;
-  } */
+    margin-bottom: 0;
+  }
 }

@@ -1,15 +1,16 @@
 'use strict'
 
 function onInit() {
-  // getTopFiveSearch()
-  //   .then(renderVideoList)
-  //   .catch((err) => console.log('error: ', err))
-  // getTopThreeWikiSearch()
-  //   .then(renderWikis)
-  //   .catch((err) => console.log('error: ', err))
-  // renderVideoList()
-  // renderWikis()
-  // renderYouTubes(getYouTubes())
+  resizeVideoScreen()
+  getTopFiveSearch()
+    .then(renderVideoList)
+    .catch((err) => console.log('error: ', err))
+  getTopThreeWikiSearch()
+    .then(renderWikis)
+    .catch((err) => console.log('error: ', err))
+  renderVideoList()
+  renderWikis()
+  renderYouTubes(getYouTubes())
 }
 
 function onSearchInput(event) {
@@ -71,6 +72,6 @@ function resizeVideoScreen() {
   const elContainer = document.querySelector('.main-container')
   const elVideoScreen = document.querySelector('.video-screen')
   // Changing the canvas dimension clears the canvas
-  elVideoScreen.width = elContainer.clientWidth - 1
+  elVideoScreen.width = elContainer.clientWidth - 60
   elVideoScreen.style.height = (elContainer.clientWidth * 9) / 16 + 'px'
 }
