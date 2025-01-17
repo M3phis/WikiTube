@@ -138,7 +138,7 @@ function onChangeColor() {
   Swal.fire({
     title: 'Pick a Background Color',
     html: `
-        <input type="color" id="bgColorPicker" value="#ffffff" style="width: 100%; height: 50px; border: none; cursor: pointer;">
+        <input type="color" id="bgColorPicker" value="#ffffff">
     `,
     showCancelButton: true,
     confirmButtonText: 'Apply',
