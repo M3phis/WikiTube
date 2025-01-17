@@ -3,6 +3,7 @@
 function onInit() {
   renderVideoList()
   renderWikis()
+  resizeVideoScreen()
   // renderYouTubes(getYouTubes())
 }
 
@@ -62,4 +63,12 @@ function renderVideoList() {
 
 function loadVideo(tag) {
   //load player with this video tag
+}
+
+function resizeVideoScreen() {
+  const elContainer = document.querySelector('.main-container')
+  const elVideoScreen = document.querySelector('.video-screen')
+  // Changing the canvas dimension clears the canvas
+  elVideoScreen.width = elContainer.clientWidth - 1
+  elVideoScreen.style.height = (elContainer.clientWidth * 9) / 16 + 'px'
 }

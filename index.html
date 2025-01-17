@@ -7,25 +7,21 @@
   </head>
   <body onload="onInit()">
     <main class="main-container">
-      <section class="left-container">
+      <header>
         <h1 class="wikitube-header">WikiTube</h1>
-        <div class="vidoes-container">
-          <section class="layout"></section>
-        </div>
-      </section>
-
-      <header class="right-container">
         <form action="" class="search-band">
           <input type="text" />
           <input type="submit" value="Search" />
         </form>
+      </header>
+      <section class="right-container">
         <div class="">
           <iframe
+            class="video-screen"
             width="630"
             height="472"
             src="https://www.youtube.com/embed/A_MjCqQoLLA"
           >
-            > > >
           </iframe>
           <div class="wiki-info">
             <h2>
@@ -34,7 +30,12 @@
             <p></p>
           </div>
         </div>
-      </header>
+      </section>
+      <section class="left-container">
+        <div class="vidoes-container">
+          <section class="layout"></section>
+        </div>
+      </section>
     </main>
     <script src="lib/axios.js"></script>
     <script src="lib/swal.js"></script>

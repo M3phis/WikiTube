@@ -1,6 +1,6 @@
 'use strict'
 
-const YOUTUBE_API_KEY = 'AIzaSyDzbz1rmh6TBRznbC9hajSu6OgrrC2VTTM'
+const YOUTUBE_API_KEY = 'AIzaSyB7k-8yQnVc6FQdhX6QsAAKojAfoxlI6NU'
 
 function getYouTubeVideos() {
   return axios.get(
