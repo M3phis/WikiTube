@@ -1,9 +1,23 @@
-* {
-  box-sizing: border-box;
+/* BASICS */
+@import url('../css/basics/base.css');
+/* @import url('../css/basics/layout.css'); */
+
+/* COMPONENTS */
+@import url('../css/components/main-header.css');
+@import url('../css/components/main-layout.css');
+@import url('../css/components/main-footer.css');
+
+/* MQ */
+@import url('/css/mq.css');
+
+/* h1 {
+  font-size: 3rem;
+  margin: 0.3;
 }
 
-.wikitube-header {
-  font-size: 3rem;
+.main-container {
+  display: grid;
+  grid-template-columns: minmax(60px, 1fr) 2fr 50px 2fr minmax(60px, 1fr);
 }
 
 .layout {
@@ -13,26 +27,27 @@
   grid-template-rows: repeat(auto-fit, 1fr);
   grid-template-columns: 1fr;
   gap: 20px 8px;
+
+  img {
+    height: 100%;
+  }
 }
 
 .left-container {
+  grid-column: 2;
   width: 50%;
 }
 
 .right-container {
+  grid-column: 4;
   width: 50%;
 }
 .vidoes-container {
   width: 50%;
 }
 
-.main-container {
-  display: flex;
-  flex-direction: row;
-  margin-left: 20px;
-}
-
 .video-clip {
   background-color: darkgray;
   display: flex;
-}
+  align-items: center;
+} */
