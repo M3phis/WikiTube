@@ -1,64 +1,67 @@
 'use strict'
 
 function onInit() {
-  renderVideoList()
-  renderWikis()
-  resizeVideoScreen()
+  getTopFiveSearch()
+    .then(renderVideoList)
+    .catch((err) => console.log('error: ', err))
+  getTopThreeWikiSearch()
+    .then(renderWikis)
+    .catch((err) => console.log('error: ', err))
+  // renderVideoList()
+  // renderWikis()
   // renderYouTubes(getYouTubes())
 }
 
-function onSearchInput(value) {
+function onSearchInput(event) {
+  event.preventDefault()
+
+  const value = document.querySelector('.search-input').value
+  console.log('value: ', value)
   getTopFiveSearch(value)
-    .then(renderYouTubeSearches)
+    .then(renderVideoList)
     .catch((err) => console.log('error: ', err))
   getTopThreeWikiSearch(value)
-    .then(renderWikiSearches)
+    .then(renderWikis)
     .catch((err) => console.log('error: ', err))
 }
 
-function renderWikis() {
-  getTopThreeWikiSearch('the beatles')
-    .then((res) => {
-      const elWikiInfo = document.querySelector('.wiki-info')
-      let strHTML = ''
+function renderWikis(wikis) {
+  console.log('your wiki list sirs: ', wikis)
 
-      strHTML = res
-        .map((article) => {
-          return `<h2><a href="https://en.wikipedia.org/wiki/${article.titleURL}">
+  const elWikiInfo = document.querySelector('.wiki-info')
+  let strHTML = ''
+
+  strHTML = wikis
+    .map((article) => {
+      return `<h2><a href="https://en.wikipedia.org/wiki/${article.titleURL}">
         ${article.title}</a></h2>
            <p>${article.snippet}</p>
           `
-        })
-        .join('')
-
-      elWikiInfo.innerHTML = strHTML
     })
-    .catch((err) => console.log('err: ', err))
+    .join('')
+  elWikiInfo.innerHTML = strHTML
 }
 
-function renderVideoList() {
-  getTopFiveSearch('the beatles')
-    .then((res) => {
-      //do the actual rendering
-      const elVideoLayout = document.querySelector('.layout')
-      let strHTML = ''
+function renderVideoList(videos) {
+  console.log('render vidoe list: ', videos)
 
-      strHTML = res
-        .map((video) => {
-          console.log('vidoeID: ', video.videoId)
-          return `<div  onclick="onPlayVideo('${video.videoId}')" class="video-clip">
+  //do the actual rendering
+  const elVideoLayout = document.querySelector('.layout')
+  let strHTML = ''
+
+  strHTML = videos
+    .map((video) => {
+      console.log('vidoeID: ', video.videoId)
+      return `<div  onclick="onPlayVideo('${video.videoId}')" class="video-clip">
             <img src="${video.url}">     
          <p>${video.title}</p>
               
               </div>
             `
-        })
-        .join('')
-
-      elVideoLayout.innerHTML = strHTML
-      console.log('your video list sirs: ', res)
     })
-    .catch((err) => console.log('error:  ', err))
+    .join('')
+  elVideoLayout.innerHTML = strHTML
+  console.log('your video list sirs: ', res)
 }
 
 function loadVideo(tag) {

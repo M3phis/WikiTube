@@ -9,9 +9,28 @@
     <main class="main-container">
       <header>
         <h1 class="wikitube-header">WikiTube</h1>
-        <form action="" class="search-band">
-          <input type="text" />
-          <input type="submit" value="Search" />
+        <form onsubmit="onSearchInput(event)" action="" class="search-band">
+          <input
+            class="search-input"
+            type="text"
+            name="search-input"
+            id="search-input"
+          />
+          <label for="search-input">Search</label>
+        <div class="vidoes-container">
+          <section class="layout"></section>
+        </div>
+      </section>
+
+      <header class="right-container">
+        <form onsubmit="onSearchInput(event)" action="" class="search-band">
+          <input
+            class="search-input"
+            type="text"
+            name="search-input"
+            id="search-input"
+          />
+          <label for="search-input">Search</label>
         </form>
       </header>
       <section class="right-container">

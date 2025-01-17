@@ -8,7 +8,8 @@ function getYouTubeVideos() {
   )
 }
 
-function getTopFiveSearch(value) {
+function getTopFiveSearch(value = 'the beatles') {
+  console.log('value of get top five: ', value)
   return axios
     .get(
       `https://www.googleapis.com/youtube/v3/search?part=snippet&videoEmbeddable=true&type=video&key=${YOUTUBE_API_KEY}&q=${value}`
@@ -29,7 +30,7 @@ function getTopFiveSearch(value) {
     })
 }
 
-function getTopThreeWikiSearch(value) {
+function getTopThreeWikiSearch(value = 'the beatles') {
   return axios
     .get(
       `https://en.wikipedia.org/w/api.php?&origin=*&action=query&list=search&srsearch=${value}&format=json`
