@@ -1,4 +1,22 @@
+header {
+  margin-bottom: 0.5rem;
+}
+
 h1 {
   font-size: 3rem;
   margin-block: 0.4rem;
+}
+
+.search-band {
+  padding: 10px 15px;
+  font-size: 16px;
+  border: 2px solid #ddd;
+  border-radius: 25px;
+  outline: none;
+  transition: all 0.3s ease;
+}
+
+.search-band:focus {
+  border-color: #007bff;
+  box-shadow: 0 0 8px rgba(0, 123, 255, 0.4);
 }

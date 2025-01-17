@@ -9,14 +9,14 @@
     <main class="main-container">
       <header>
         <h1 class="wikitube-header">WikiTube</h1>
-        <form onsubmit="onSearchInput(event)" action="" class="search-band">
-          <input
-            class="search-input"
-            type="text"
-            name="search-input"
-            id="search-input"
-          />
-          <label for="search-input">Search</label>
+        <input
+          class="search-band"
+          onchange="onSearchInput(value)"
+          type="text"
+          name="search-input"
+          id="search-input"
+        />
+        <label for="search-input">Search</label>
       </header>
       <section class="right-container">
         <div class="">
@@ -39,12 +39,18 @@
         <div class="vidoes-container">
           <section class="layout"></section>
         </div>
-
       </section>
       <footer>
-        <button onclick="onDeleteHistory()">Delete History</button>
+        <div class="rights">Coofe Rights 2025</div>
         <div class="history"></div>
+        <button class="delete-btn hidden" onclick="onDeleteHistory(event)">
+          Delete History
+        </button>
       </footer>
+      <dialog></dialog>
+      <button class="change-color" onclick="onChangeColor()">
+        Change Background color
+      </button>
     </main>
     <script src="js/services/storage.service.js"></script>
     <script src="lib/axios.js"></script>

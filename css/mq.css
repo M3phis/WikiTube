@@ -42,10 +42,15 @@
   }
 
   .video-clip {
-    background-color: darkgray;
-    display: flex;
-    align-items: center;
-    gap: 10px;
     margin-bottom: 0;
+  }
+
+  footer {
+    grid-column: 2/4;
+  }
+  .change-color {
+    position: absolute;
+    top: 1px;
+    right: 1px;
   }
 }

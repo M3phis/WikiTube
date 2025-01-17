@@ -1,7 +1,9 @@
 'use strict'
 let gSearches
+let elDeletBtn
 
 function onInit() {
+  elDeletBtn = document.querySelector('.delete-btn')
   // resizeVideoScreen()
   // getTopFiveSearch()
   //   .then(renderVideoList)
@@ -14,15 +16,13 @@ function onInit() {
   // renderYouTubes(getYouTubes())
 
   gSearches = loadFromStorage('searches') || []
+  toggleDeleteBtn()
+
   console.log('gSearches :', gSearches)
   renderFooter(gSearches)
 }
 
-function onSearchInput(event) {
-  event.preventDefault()
-
-  const value = document.querySelector('.search-input').value
-  console.log('value: ', value)
+function onSearchInput(value) {
   getTopFiveSearch(value)
     .then(renderVideoList)
     .catch((err) => console.log('error: ', err))
@@ -33,6 +33,10 @@ function onSearchInput(event) {
       const searches = loadFromStorage('searches') || []
       searches.push(value)
       saveToStorage('searches', searches)
+      renderFooter(searches)
+      gSearches = searches
+      console.log('gSearches', gSearches)
+      toggleDeleteBtn()
     })
 }
 
@@ -99,9 +103,51 @@ function renderFooter(searches) {
   console.log('these are your seraches: ', searches)
 }
 
-function onDeleteHistory() {
-  localStorage.clear()
-  gSearches = []
-  renderFooter(gSearches)
-  console.log('deleting')
+function onDeleteHistory(ev) {
+  // ev.preventDefault()
+  Swal.fire({
+    title: 'Do you want to delete your history?',
+    showDenyButton: true,
+    showCancelButton: true,
+    confirmButtonText: 'Delete',
+    denyButtonText: `Don't Delete`,
+  }).then((result) => {
+    /* Read more about isConfirmed, isDenied below */
+    if (result.isConfirmed) {
+      Swal.fire('Delete!', '', 'success')
+      localStorage.clear()
+      gSearches = []
+      renderFooter(gSearches)
+      toggleDeleteBtn()
+      console.log('deleting')
+    } else if (result.isDenied) {
+      Swal.fire('History did not deleted', '', 'info')
+    }
+  })
+}
+
+function toggleDeleteBtn() {
+  if (!gSearches[0]) {
+    elDeletBtn.classList.add('hidden')
+  } else {
+    elDeletBtn.classList.remove('hidden')
+  }
+}
+
+function onChangeColor() {
+  Swal.fire({
+    title: 'Pick a Background Color',
+    html: `
+        <input type="color" id="bgColorPicker" value="#ffffff" style="width: 100%; height: 50px; border: none; cursor: pointer;">
+    `,
+    showCancelButton: true,
+    confirmButtonText: 'Apply',
+    preConfirm: () => {
+      return document.getElementById('bgColorPicker').value
+    },
+  }).then((result) => {
+    if (result.isConfirmed) {
+      document.body.style.background = result.value
+    }
+  })
 }
