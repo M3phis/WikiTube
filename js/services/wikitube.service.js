@@ -42,7 +42,6 @@ function getTopThreeWikiSearch(value = 'the beatles') {
         const { title, snippet } = item
         return { title, snippet, titleURL: title.split(' ').join('_') }
       })
-      saveToStorage(`wikis-${value}`, cleanData)
 
       return Promise.resolve(cleanData)
 

@@ -1,16 +1,21 @@
 'use strict'
+let gSearches
 
 function onInit() {
-  resizeVideoScreen()
-  getTopFiveSearch()
-    .then(renderVideoList)
-    .catch((err) => console.log('error: ', err))
-  getTopThreeWikiSearch()
-    .then(renderWikis)
-    .catch((err) => console.log('error: ', err))
-  renderVideoList()
-  renderWikis()
-  renderYouTubes(getYouTubes())
+  // resizeVideoScreen()
+  // getTopFiveSearch()
+  //   .then(renderVideoList)
+  //   .catch((err) => console.log('error: ', err))
+  // getTopThreeWikiSearch()
+  //   .then(renderWikis)
+  //   .catch((err) => console.log('error: ', err))
+  // renderVideoList()
+  // renderWikis()
+  // renderYouTubes(getYouTubes())
+
+  gSearches = loadFromStorage('searches') || []
+  console.log('gSearches :', gSearches)
+  renderFooter(gSearches)
 }
 
 function onSearchInput(event) {
@@ -24,6 +29,11 @@ function onSearchInput(event) {
   getTopThreeWikiSearch(value)
     .then(renderWikis)
     .catch((err) => console.log('error: ', err))
+    .then(() => {
+      const searches = loadFromStorage('searches') || []
+      searches.push(value)
+      saveToStorage('searches', searches)
+    })
 }
 
 function renderWikis(wikis) {
@@ -74,4 +84,24 @@ function resizeVideoScreen() {
   // Changing the canvas dimension clears the canvas
   elVideoScreen.width = elContainer.clientWidth - 60
   elVideoScreen.style.height = (elContainer.clientWidth * 9) / 16 + 'px'
+}
+
+function renderFooter(searches) {
+  const elHistory = document.querySelector('footer .history')
+  let strHMTL = ''
+
+  strHMTL = searches
+    .map((search) => {
+      return `<div>${search}</div>`
+    })
+    .join('')
+  elHistory.innerHTML = strHMTL
+  console.log('these are your seraches: ', searches)
+}
+
+function onDeleteHistory() {
+  localStorage.clear()
+  gSearches = []
+  renderFooter(gSearches)
+  console.log('deleting')
 }
