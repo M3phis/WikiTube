@@ -1,12 +1,12 @@
 'use strict'
 
 function onInit() {
-  getTopFiveSearch()
-    .then(renderVideoList)
-    .catch((err) => console.log('error: ', err))
-  getTopThreeWikiSearch()
-    .then(renderWikis)
-    .catch((err) => console.log('error: ', err))
+  // getTopFiveSearch()
+  //   .then(renderVideoList)
+  //   .catch((err) => console.log('error: ', err))
+  // getTopThreeWikiSearch()
+  //   .then(renderWikis)
+  //   .catch((err) => console.log('error: ', err))
   // renderVideoList()
   // renderWikis()
   // renderYouTubes(getYouTubes())
@@ -61,7 +61,6 @@ function renderVideoList(videos) {
     })
     .join('')
   elVideoLayout.innerHTML = strHTML
-  console.log('your video list sirs: ', res)
 }
 
 function loadVideo(tag) {
